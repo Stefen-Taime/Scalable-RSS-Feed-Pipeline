@@ -102,7 +102,7 @@ ARGS = {
 
 
 dag = DAG(
-    dag_id="ELT-Pipeline",
+    dag_id="ETL-Pipeline",
     default_args=ARGS,
     description="",
     schedule_interval="0 0 1 * *",
