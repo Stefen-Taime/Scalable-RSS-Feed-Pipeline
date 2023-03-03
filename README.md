@@ -67,6 +67,7 @@ Execute the following command that will create SinkConnector for Mongo
 	$ docker exec -ti mongo mongo -u debezium -p dbz --authenticationDatabase admin localhost:27017/demo
 
     $ show collections;
+    $ db.rss_feeds_collection.find();
   
 ![alt text](/images/mongo-feeds.png)
   
