@@ -58,10 +58,10 @@ navigate to cd mongo-kafka:
 
 Execute the following command that will create SinkConnector for Mongo    
 
-    $ curl -X POST \
-  -H "Content-Type: application/json" \
-  --data @mongo-sink.json \
-  http://localhost:8083/connectors
+    $ curl -X POST \-H "Content-Type: application/json" \
+  	--data @mongo-sink.json \
+  	http://localhost:8083/connectors
+  
   
   
 	$ docker exec -ti mongo mongo -u debezium -p dbz --authenticationDatabase admin localhost:27017/demo
