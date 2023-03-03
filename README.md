@@ -50,6 +50,8 @@ Now, we can trigger our DAG and see all the tasks running.
 
 ![alt text](/images/airflow-feeds.png)
 
+Note: run the docker-compose mongo-kafka file before running the dag
+
 ## Setup kafka, Mongo 
 
 navigate to cd mongo-kafka:
