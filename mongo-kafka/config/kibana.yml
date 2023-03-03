@@ -1,0 +1,11 @@
+---
+# Modifications to default Kibana configuration 
+# This file to be exposed to kibana-docker
+# Background and instructions at https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html
+#
+# The actual steps for increasing the zoom of kibana maps
+# Modifications taken from https://www.objectrocket.com/blog/how-to/elasticsearch-tile-service/
+
+server.name: kibana
+server.host: "0"
+elasticsearch.url: http://elasticsearch:9200

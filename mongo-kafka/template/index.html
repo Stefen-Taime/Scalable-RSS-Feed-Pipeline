@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News Articles</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .pagination {
+      display: inline-block;
+    }
+
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+
+    .pagination a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .pagination a:hover:not(.active) {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>News Articles</h1>
+  <form>
+    <label for="language">Filter by language:</label>
+    <select name="language" id="language">
+      <option value="">All</option>
+      <option value="en">English</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="es">Spanish</option>
+      <option value="pl">polish</option>
+      
+    </select>
+    <button type="submit">Apply Filter</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Link</th>
+        <th>Language</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in news %}
+        <tr {% if loop.index % 8 == 0 %}class="page-break"{% endif %} {% if language and article.language != language %}style="display: none;"{% endif %}>
+          <td>{{ article.title }}</td>
+          <td>{{ article.summary }}</td>
+          <td><a href="{{ article.link }}" target="_blank">{{ article.link }}</a></td>
+          <td>{{ article.language }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    {% for i in range(1, num_pages + 1) %}
+      {% if i == current_page %}
+        <a href="#" class="active">{{ i }}</a>
+      {% else %}
+        <a href="?page={{ i }}{% if language %}&language={{ language }}{% endif %}">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</body>
+</html>

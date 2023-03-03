@@ -1,0 +1,15 @@
+{
+    "name": "mongodb-sink-connector",
+    "config": {
+      "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+      "tasks.max": "1",
+      "topics": "rss_feeds",
+      "connection.uri": "mongodb://debezium:dbz@mongo:27017/demo?authSource=admin",
+      "database": "demo",
+      "collection": "rss_feeds_collection",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "key.converter.schemas.enable": "false",
+      "value.converter.schemas.enable": "false"
+    }
+  }
