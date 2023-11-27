@@ -87,7 +87,7 @@ Run api after installing the dependencies:
 
 ![alt text](/images/fr.png)	
 
-Intially, the page will be empty. Go to airflow interface, select "All" and start the process by clcking on play button in "Actions" column.
+Intially, the page will be empty. Go to airflow interface, select "All" and start the process by clcking on start button in "Actions" column.
 
 ## References 
 
