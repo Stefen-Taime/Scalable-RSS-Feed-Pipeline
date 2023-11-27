@@ -31,6 +31,10 @@ Build Docker:
 
     $ docker-compose build 
 
+Create network ID `streaming-stack`
+
+    $ docker network create streaming-stack
+
 Initialize Airflow database:
 
     $ docker-compose up airflow-init
@@ -50,36 +54,40 @@ Now, we can trigger our DAG and see all the tasks running.
 
 ![alt text](/images/airflow-feeds.png)
 
-Note: run the docker-compose mongo-kafka file before running the dag
+Note: run the docker-compose mongo-kafka file before running the dag (steps below).
 
 ## Setup kafka, Mongo 
 
-navigate to cd mongo-kafka:
+navigate to mongo-kafka, set up version and run the docker-compose command:
 
+    $ cd mongo-kafka/
+    $ echo -e "CONF_VER=7.4.3" > .env
     $ docker-compose up -d
 
 Execute the following command that will create SinkConnector for Mongo    
 
-    $ curl -X POST \-H "Content-Type: application/json" \
-  	--data @mongo-sink.json \
-  	http://localhost:8083/connectors
-  
-  
+    $ cd config/
+    $ curl -X POST -H "Content-Type: application/json" --data @mongo-sink.json http://localhost:8083/connectors
+
   
 	$ docker exec -ti mongo mongo -u debezium -p dbz --authenticationDatabase admin localhost:27017/demo
 
     $ show collections;
     $ db.rss_feeds_collection.find();
   
-![alt text](/images/mongo-feeds.png)
+> **Note**: The below console output will be displayed only if data was scraped and pushed to DB previously. Otherwise, it will output nothing.
+> ![alt text](/images/mongo-feeds.png)
   
 
-Run api
+Run api after installing the dependencies:
 
+    $ cd ..
+    $ pip install -r requirements.txt
     $ python api.py
 
 ![alt text](/images/fr.png)	
 
+Intially, the page will be empty. Go to airflow interface, select "All" and start the process by clcking on play button in "Actions" column.
 
 ## References 
 
