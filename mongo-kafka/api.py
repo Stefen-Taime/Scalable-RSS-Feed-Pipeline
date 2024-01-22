@@ -7,7 +7,7 @@ db = client['demo']
 collection = db['rss_feeds_collection']
 
 
-app = Flask(__name__, template_folder='/path/template')
+app = Flask(__name__, template_folder='template')
 
 # get all news articles
 @app.route('/news', methods=['GET'])
